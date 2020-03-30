@@ -1,0 +1,49 @@
+
+<html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	<body>
+
+		<h1> Listagem de Livros </h1>
+
+		<form action="/livros/pesquisar" method="post">
+            <input type="text" id="titulo" name="titulo" placeholder="coloque o titulo" value="" />
+            <input type="submit" value="Pesquisar" />
+            <button onclick="livroController.voltar('/livros')">Limpar</button>
+            
+        </form>
+
+		<table>
+
+		 	<thead>
+		 		<th>Id</th>
+	            <th>Título</th>
+	            <th>Preço</th>
+	            <th>Editar</th>
+	            <th>Remover</th>		 		
+		 	</thead>
+
+		 	<tbody>
+
+		 		<tr id="livro_${livro.id}" for (livro in data.livros)>
+		 			<td>${livro.id}</td>
+		 			<td>${livro.titulo}</td>
+		 			<td>${livro.preco}</td>
+	            	<td><a href="/livros/form/${livro.id}">Editar</a></td> 
+	            	<td><a href="#" onclick="livroController.remove(`${livro.id}`)" data-ref="${livro.id}" data-type="remocao">Remover</a></td> 
+		 		</tr>
+
+		 	</tbody>
+
+		</table>
+
+		<a href="/livros/form"><button>Cadastrar</button></a>
+
+	  	<script src="/js/controller/LivroController.js"></script> 
+	  	<script>
+	  		
+	  		let livroController = new LivroController();
+	  	</script>
+	</body>
+</html>
