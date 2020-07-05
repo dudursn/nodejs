@@ -1,0 +1,83 @@
+Teste
+Express(rotas e requisições), Nodemon(server dinamico), Marko(views)
+O q aprendemos?
+	O que é a plataforma Node.
+	O que é o npm.
+	Como criar um simples servidor HTTP utilizando o módulo HTTP do Node.
+	Como utilizar o npm para iniciar um projeto Node.
+	Utilidades do arquivo package.json.
+	Utilizar o npm para instalação de pacotes de dependências de um projeto Node.
+	O que é o Express.
+	Criar rotas utilizando o Express.
+	Como exportar informações e funcionalidades de nossos módulos Node usando a sintaxe module.exports.
+	O que é o Nodemon e como utilizá-lo para agilizar o desenvolvimento.
+	Criar templates dinâmicos com MarkoJS.
+	O que é o SQLite.
+	Como utilizar o SQLite numa aplicação Node.
+	O que é o padrão DAO.
+	O que são Promises.
+	Como desenvolver o padrão DAO utilizando uma abordagem voltada para callbacks e voltada para Promises.
+	Como configurar rotas para o método POST do protocolo HTTP com o Express.
+	O que são middlewares e para que servem.
+	O que é o módulo body-parser e como ele ajuda a obter os dados vindos no corpo de uma requisição POST.
+	Como utilizar o módulo body-parser criando um middleware que o utilize.
+	DATASET API
+	Como criar uma rota para o método DELETE do protocolo HTTP.
+	Como criar variáveis de URL para recuperar seus valores em rotas.
+	A trabalhar com AJAX em aplicações Node.
+	A utilizar arquivos estáticos utilizando o middleware express.static().
+	Como criar uma rota para o método PUT do protocolo HTTP.
+	A sobrescrever o método HTTP com o módulo method-override.
+
+
+----------------------------------------------------------
+> npm init
+
+//Instalaremos o express com o gerenciador de pacotes, mas especificamente a versão 4.16.3, adicionaremos a especificação --save-exact para expressarmos que esse pacote (e essa versão em específico) é uma dependência da nossa aplicação (ou seja, que ela obrigatoriamente necessita dele para funcionar).
+
+> npm install express@4.16.3 --save-exact
+
+//Criando server com express
+const app = express();
+
+app.listen(3000, 'localhost', function(){
+	console.log("Servidor rodando na porta 3000...");
+});
+
+Ao compartilhar projeto, remover a pasta node_modules e executar o seguinte comanddo
+	> npm install
+
+
+Para toda e qualquer alteração feita no nosso código, precisamos salvar o arquivo, parar o servidor, executá-lo novamente com node server.js e então testá-lo no navegador.
+
+Seria mais interessante se tivéssemos um mecanismo que automaticamente atualizasse a instância do servidor a cada salvamento do projeto, permitindo que testássemos as alterações diretamente no navegador.
+	> npm install nodemon@1.18.4 --save-dev --save-exact
+
+Instalando de forma global
+	> npm install -g nodemon@1.18.4 --save-exact
+
+Rodando servidor
+	> nodemon server.js
+
+
+Templates html no node.js
+	> nom install marko --save-exact
+
+Módulo que manipular uma requisição antes que ela chegue na nossa lógica de negócios.
+	> npm install body-parser@1.18.3 --save-exact
+
+Middleware: São trechos intermediários de código que são executados entre o envio da requisição e seu tratamento pela rota ativada;
+// tudo que estiver antes da chamada da função next será executado antes da rota ativada e o que estiver após a chamada da função next será executado somente ao término da rota ativada!
+
+	app.use('*', (req, res, next) => {
+	   console.log('1.1');
+	   next();
+	   console.log('1.2');
+	});
+	app.use('*', (req, res, next) => {
+	   console.log('2.1');
+	   next();
+	   console.log('2.2');
+	});
+
+	Saida: 1.1 -> 2.1 > rotina -> 1.2 -> 2.2
