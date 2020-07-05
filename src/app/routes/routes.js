@@ -31,11 +31,17 @@ module.exports = (app) => {
 		//Promise
 		livroDAO.findAll()
 			.then( livros => {
-
+				
 				resp.marko(
 					require('../views/livros/list/list.marko'),
 					{ livros: livros}
 				);
+				/*
+				resp.json({
+					"message": "success",
+					"data": livros
+				})
+				*/
 
 			})
 			.catch( erro =>
