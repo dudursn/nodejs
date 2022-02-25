@@ -1,0 +1,34 @@
+Criação de uma simples api
+
+Se not yarn
+    npm install -g yarn
+
+yarn init -y
+yarn add express
+yarn add @types/express -D
+yarn add typescript ts-node-dev -D 
+yarn add uuidv4  --bib id unico universal
+yarn tsc --init
+    Configurar o tsconfig.json
+    {
+        "compilerOptions": {
+            "target": "es2017",                                
+            "module": "commonjs",
+            "allowJs": true,            
+            "esModuleInterop": true,                                                   
+            "forceConsistentCasingInFileNames": true,           
+            "strict": false,                                    
+            "skipLibCheck": true,                                
+            "include": [
+            "src/**/*.ts"
+            ],
+        }
+    }
+
+Adicionar no package.json
+    "scripts": {
+        "start": "tsnd --traspile-only --respawn --ignore-watch node_modules src/server.ts"
+    },
+    executar com ts-node-dev, apenas traduzir ts para js, restartar sempre, 
+    ignorar a pasta node_modules e executar em src/server.ts
+

@@ -1,0 +1,17 @@
+{
+  "name": "api-solid-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3",
+    "uuidv4": "^6.2.12"
+  },
+  "scripts": {
+    "start": "tsnd --traspile-only --respawn src/server.ts"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.5"
+  }
+}
