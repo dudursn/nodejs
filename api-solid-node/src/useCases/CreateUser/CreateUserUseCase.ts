@@ -8,15 +8,15 @@ export class CreateUserUseCase{
     private usersRepository: IUserRepository;
     private mailProvider: IMailProvider;
 
-    constructor(usersRepository: IUserRepositorysitory, mailProvider: IMailProvider) {
-    }
+    constructor(usersRepository: IUserRepository, mailProvider: IMailProvider) {
+    
         this.usersRepository = usersRepository;
         this.mailProvider = mailProvider;
     }
 
     async execute(data: ICreateUserRequestDTO) {
         
-        const userAlreadyExist = await this.usersRepository.findByEmail();
+        const userAlreadyExist = await this.usersRepository.findByEmail(data.email);
 
         if(userAlreadyExist){
             throw new Error('User already exist');
@@ -26,7 +26,7 @@ export class CreateUserUseCase{
 
         await this.usersRepository.save(user);
 
-        this.mailProvider.sendMail({
+        await this.mailProvider.sendMail({
             to: {
                 name: data.name,
                 email: data.email
